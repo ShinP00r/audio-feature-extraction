@@ -1,13 +1,10 @@
 from pydub import AudioSegment
-import os.path
-from utils import print_attributes, parse_args
+from utils import print_attributes, parse_args, load_file
 
 args = parse_args()
 
-print(args)
-# load file
-dirname = os.path.dirname(__file__)
-samples_path = os.path.join(dirname, "../samples")
+if args.verbose:
+    print(args)
 
-audio_segment = AudioSegment.from_file(os.path.join(samples_path, "kam_001.aac"))
+audio_segment = load_file(args.file)
 print_attributes(audio_segment)

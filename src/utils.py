@@ -1,5 +1,6 @@
 from pydub import AudioSegment
 import argparse
+import os.path
 
 
 def parse_args():
@@ -11,12 +12,12 @@ def parse_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-v", "--verbose", action="store_true", help="Verbose Output")
-    parser.add_argument('--source',
-                    dest='sources',
-                    help='sources',
-                    type=int,
-                    nargs='+'
-                    )
+    parser.add_argument(
+        "-f",
+        "--file",
+        dest="file",
+        help="file",
+    )
 
     return parser.parse_args()
 
@@ -35,3 +36,9 @@ def print_attributes(audio_segment):
     print(f"Length (ms): {len(audio_segment)}")
     print(f"Frame count: {audio_segment.frame_count()}")
     print(f"Intensity: {audio_segment.dBFS}")
+
+
+def load_file(filename):
+    print(f"Loading file: {filename}")
+    audio_segment = AudioSegment.from_file(filename)
+    return audio_segment
