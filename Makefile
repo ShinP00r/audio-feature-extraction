@@ -1,12 +1,16 @@
 SRC_DIR := src
 MAIN := main.py
 SAMPLE_DIR := samples
-ARGS := -f $(SAMPLE_DIR)/a.mp3
+ARGS := -f $(SAMPLE_DIR)/kam_000.aac
+PYTHON := python3
 
 all:
-	python3 $(SRC_DIR)/$(MAIN) $(ARGS)
+	$(PYTHON) $(SRC_DIR)/$(MAIN) $(ARGS)
 
 clean: format
 
-format: 
+format:
 	black $(SRC_DIR)
+
+lint: clean
+	$(PYTHON) -m pylint $(SRC_DIR)

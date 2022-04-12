@@ -1,10 +1,21 @@
-from pydub import AudioSegment
-from utils import print_attributes, parse_args, load_file
+""" main execution file """
 
-args = parse_args()
+from utils import parse_args
+from audio_segment import AudioSegmentAnalyzer
 
-if args.verbose:
-    print(args)
 
-audio_segment = load_file(args.file)
-print_attributes(audio_segment)
+def main():
+    """
+    main loop
+    """
+    args = parse_args()
+
+    if args.verbose:
+        print(args)
+
+    asa = AudioSegmentAnalyzer(args.file)
+    asa.print_attributes()
+
+
+if __name__ == "__main__":
+    main()
